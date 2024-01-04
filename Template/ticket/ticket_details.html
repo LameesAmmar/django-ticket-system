@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mt-4">
+      <div class="card">
+        <div class="card-header pb-0 px-3">
+          <h6 class="mb-0">Ticket Details</h6>
+        </div>
+        <div class="card-body pt-4 p-3">
+          <ul class="list-group">
+            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+              <div class="d-flex flex-column">
+                <h6 class="mb-3 text-sm">{{ticket.ticket_title}}</h6>
+                <span class="mb-2 text-xs">Description: <span class="text-dark font-weight-bold ms-sm-2">{{ticket.ticket_description}}</span></span>
+                <span class="mb-2 text-xs">Date Created: <span class="text-dark ms-sm-2 font-weight-bold">{{ticket.created_on}}</span></span>
+                <span class="mb-2 text-xs">Assigned To: <span class="text-dark ms-sm-2 font-weight-bold">{{ticket.engineer}}</span></span>
+                <span class="mb-2 text-xs">Created By: <span class="text-dark ms-sm-2 font-weight-bold">{{ticket.customer}}</span></span>
+                {% if ticket.is_engineer or ticket.is_superuser %}
+                <span class="mb-2 text-xs">Ticket Soluation: <span class="text-dark ms-sm-2 font-weight-bold">{{ticket.resolution_steps}}</span></span>
+                 {% endif %}
+                <span class="mb-2 text-xs">Ticket Status: <span class="text-dark ms-sm-2 font-weight-bold">
+
+                  {%if ticket.status == 'Active' %}
+                 Active 
+                  {%elif ticket.status == 'Pending' %}
+                  Pending
+                  {%elif ticket.status == 'Resolved' %}
+                 Resolved
+                  {% endif %}
+              </span></span>
+                {% if ticket.is_resloved %}
+                <span class="mb-2 text-xs">Resloved yet?: <span class="badge bg-gradient-success ">ٌResolved</span></span>
+                {% else %}
+                <span class="mb-2 text-xs">Resloved yet?: <span class="badge bg-gradient-danger">Not yet </span></span>
+                {% endif %}
+              </div>
+            </li>
+          </ul>
+
+          {% if request.user.is_customer %}
+
+          <a href="{% url 'update_ticket' ticket.pk %}" class="btn bg-gradient-success">Update Ticket</a>
+          {% endif %}
+
+        </div>
+        {% if request.user.is_engineer %}
+        <a href="{% url 'resolved_ticket' ticket.pk %}" class="btn bg-gradient-success">Solve Ticket</a>
+        {% endif %}
+      </div>
+
+      
+
+    </div>
+</div>
+
+{% endblock content %}

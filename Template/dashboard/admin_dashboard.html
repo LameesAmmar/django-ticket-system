@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+
+
+<div class="row">
+  <div class="col-12">
+            <div class="col-12">
+
+                <div class="card-body px-5">
+                  <h1>welcome {{request.user.username}}</h1>
+                </div>
+                
+            </div>
+
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-md-3 col-3">
+      <div class="card">
+        <div class="card-body pt-0 p-3 text-center">
+          <h6 class="text-center mb-0">Ticket Not Assigne yet</h6>
+          <hr class="horizontal dark my-3">
+          <h5 class="mb-0">{{queue_tickets}}</h5>
+        </div>
+      </div>
+    </div>  
+    <div class="col-md-3 col-3">
+      <div class="card">
+        <div class="card-body pt-0 p-3 text-center">
+          <h6 class="text-center mb-0">Active Ticket</h6>
+          <hr class="horizontal dark my-3">
+          <h5 class="mb-0">{{active_tickets}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-3">
+      <div class="card">
+        <div class="card-body pt-0 p-3 text-center">
+          <h6 class="text-center mb-0">closed Ticket</h6>
+          <hr class="horizontal dark my-3">
+          <h5 class="mb-0">{{colsed_tickets}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-3">
+      <div class="card">
+        <div class="card-body pt-0 p-3 text-center">
+          <h6 class="text-center mb-0">Total Ticket</h6>
+          <hr class="horizontal dark my-3">
+          <h5 class="mb-0">{{tickets}}</h5>
+        </div>
+      </div>
+    </div>    
+
+  </div>  
+{% endblock content %}

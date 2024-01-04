@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<di class="row">
+    <div class="col-md-6">
+        <div class="card mx-auto" style="width: 40rem;">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Solve Ticket</h5>
+                <form method="POST">
+                    {% csrf_token %}
+                   <div class="mb-3">
+                        <label for="exampleFormControlInput2"  class="form-label">Resolution Steps</label>
+                        {% render_field form.resolution_steps class="input-group input-group-outline" %}
+                    </div>
+                      <div class="col-auto">
+                        <button  class="btn btn-primary mb-3">Submit</button>
+                      </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</di>
+
+{% endblock content %}

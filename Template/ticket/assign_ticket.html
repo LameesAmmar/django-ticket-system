@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<di class="row">
+    <div class="col-md-12">
+        <div class="card mx-auto" style="width: 40rem;">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Ticket</h5>
+                    <div class="mb-3">
+                        <h6>Ticket Title:</h6>
+                        {{ticket.ticket_title }}
+                    </div>
+                    <div class="mb-3">
+                        <h6>Ticket Description :</h6>
+                        {{ticket.ticket_description }}
+                    </div></br>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                    <div class="mb-3">
+                        <h5>Assign To Engineer</h5>
+                        {% render_field form.engineer class="form-control" %}
+                    </div>
+                      <div class="col-auto">
+                        <button  class="btn btn-primary mb-3">Submit</button>
+                      </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</di>
+
+
+
+{% endblock content %}
